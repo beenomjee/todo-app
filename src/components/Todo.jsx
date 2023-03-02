@@ -10,7 +10,6 @@ const todo = ({ id, isSelected, message }) => {
         editTodos(id)
     }
 
-    console.log('biba');
 
     return (
         <div className={styles.todo}>
