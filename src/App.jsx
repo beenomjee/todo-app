@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './app.module.css'
 import Todo from './components/Todo'
 import { TodosContext } from './MyContext'

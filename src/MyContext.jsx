@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 
 const TodosContext = createContext();
 let myTodos = localStorage.getItem('MyTodos') != null ? JSON.parse(localStorage.getItem('MyTodos')) : [];
