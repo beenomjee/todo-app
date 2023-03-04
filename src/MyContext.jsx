@@ -39,8 +39,16 @@ const MyContext = ({ children }) => {
         }
     }
 
+    const saveModifyTodo = (id, value) => {
+        setStateTodos(preVal => {
+            preVal[id] = { ...preVal[id], message: value };
+            updateLocalStorage(preVal)
+            return [...preVal];
+        })
+    }
+
     return (
-        <TodosContext.Provider value={[todos, setTodos, editTodos, deleteTodos]}>{children}</TodosContext.Provider>
+        <TodosContext.Provider value={[todos, setTodos, editTodos, deleteTodos, saveModifyTodo]}>{children}</TodosContext.Provider>
     )
 }
 

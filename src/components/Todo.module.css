@@ -1,3 +1,10 @@
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .todo input[type="checkbox"] {
   display: none;
 }
@@ -11,6 +18,8 @@
   cursor: pointer;
   user-select: none;
   transition: all 0.1s;
+  flex-basis: 85%;
+  line-break: anywhere;
 }
 
 .todo label::before {
@@ -60,4 +69,16 @@
 .todo input[type="checkbox"]:checked ~ label::after {
   scale: 1;
   transition: all 0.2s;
+}
+
+.todo button {
+  color: black;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.todo button:hover {
+  color: #2d70fd;
 }

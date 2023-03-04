@@ -92,6 +92,12 @@
   padding: 20px 20px 20px 70px;
 }
 
+@media (max-width: 500px) {
+  .container .todos p {
+    margin-left: -50px;
+  }
+}
+
 .container .todos > div:not(:last-child) {
   margin-bottom: 25px;
 }

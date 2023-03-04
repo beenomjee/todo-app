@@ -5,11 +5,27 @@ import { TodosContext } from './MyContext'
 
 const App = () => {
   const [inputBox, setInputBox] = useState("");
-  const [todos, setTodos, , deleteTodos] = useContext(TodosContext);
+  const [todos, setTodos, , deleteTodos, saveModifyTodo] = useContext(TodosContext);
+  const [indexOfEditTodo, setIndexOfEditTodo] = useState("");
 
   const addNewTodo = () => {
     const inputEl = document.querySelector(`.${styles.inputContainer} input`);
     inputEl.value && setTodos(inputEl.value)
+    setInputBox('');
+    document.querySelector(`.${styles.inputContainer} input`).focus();
+  }
+
+  const modifyTodos = (id) => {
+    setIndexOfEditTodo(`${id}`);
+    setInputBox(todos[id].message);
+    document.querySelector(`.${styles.inputContainer} input`).focus();
+
+  }
+
+  const saveEditTodo = () => {
+    const inputEl = document.querySelector(`.${styles.inputContainer} input`);
+    inputEl.value && saveModifyTodo(indexOfEditTodo, inputEl.value)
+    inputEl.value && setIndexOfEditTodo('');
     setInputBox('');
     document.querySelector(`.${styles.inputContainer} input`).focus();
   }
@@ -20,10 +36,11 @@ const App = () => {
       <h1 className={styles.h1}>Daily To Do List</h1>
       <div className={styles.inputContainer}>
         <input type="text" placeholder='Add new list item' value={inputBox} onChange={e => setInputBox(e.target.value)} />
-        <button onClick={addNewTodo}>Add</button>
+        <button onClick={indexOfEditTodo ? saveEditTodo : addNewTodo}>{indexOfEditTodo ? "Save" : "Add"}</button>
       </div>
       <div className={styles.todos}>
-        {todos.map((todo, key) => <Todo message={todo.message} id={todo.id} key={key} isSelected={todo.isSelected} />)}
+
+        {todos.length == 0 ? <p>You don't have any task here.</p> : todos.map((todo, key) => <Todo message={todo.message} id={todo.id} key={key} isSelected={todo.isSelected} modifyTodos={modifyTodos} />)}
       </div>
       <div className={styles.bottom}>
         <span>{todos.filter(todo => todo.isSelected).length} item selected</span>
